@@ -1,6 +1,6 @@
 package com.runesource;
 
-import com.runesource.core.network.NetworkServer;
+import com.runesource.network.NetworkServer;
 
 public final class Runesource {
 

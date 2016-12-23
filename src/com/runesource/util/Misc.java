@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import com.runesource.core.world.Position;
+import com.runesource.game.world.Position;
 
 /**
  * A collection of miscellaneous utility methods and constants.
