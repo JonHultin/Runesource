@@ -3,7 +3,7 @@ package com.runesource.core.world.model.entity.mobile;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import com.runesource.core.network.packet.out.RegionalUpdatePacket;
+import com.runesource.core.network.packet.encoders.RegionUpdatePacketEncoder;
 import com.runesource.core.world.Position;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 import com.runesource.util.Misc;
@@ -44,7 +44,7 @@ public class MovementHandler {
 		int deltaX = player.getPosition().getX() - player.getRegionManager().getPosition().getRegionX() * 8;
 		int deltaY = player.getPosition().getY() - player.getRegionManager().getPosition().getRegionY() * 8;
 		if (deltaX < 16 || deltaX >= 88 || deltaY < 16 || deltaY > 88) {
-			player.dispatch(new RegionalUpdatePacket());
+			player.dispatch(new RegionUpdatePacketEncoder());
 		}
 	}
 

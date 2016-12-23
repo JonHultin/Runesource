@@ -1,4 +1,4 @@
-package com.runesource.core.network.codec;
+package com.runesource.core.network.channel.handlers;
 
 import com.runesource.core.network.buffer.PacketHeader;
 import com.runesource.core.network.buffer.ProtocolBuffer;
@@ -8,11 +8,11 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
-public final class PacketEncoder extends MessageToByteEncoder<ProtocolBuffer> {
+public final class PacketOutboundHandler extends MessageToByteEncoder<ProtocolBuffer> {
 
 	private final SecureCipher secureWrite;
 	
-	public PacketEncoder(SecureCipher secureWrite) {
+	public PacketOutboundHandler(SecureCipher secureWrite) {
 		this.secureWrite = secureWrite;
 	}
 	

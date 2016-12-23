@@ -2,8 +2,9 @@ package com.runesource.core.world.model.entity.item;
 
 import com.runesource.core.world.Position;
 import com.runesource.core.world.model.entity.Entity;
+import com.runesource.core.world.model.entity.EntityEventListener;
 
-public final class ItemEntity extends Entity {
+public final class ItemEntity extends Entity<EntityEventListener<ItemEntity>> {
 	
 	private final Item item;
 	
@@ -24,6 +25,10 @@ public final class ItemEntity extends Entity {
 
 	public Item getItem() {
 		return item;
+	}
+
+	@Override public EntityEventListener<ItemEntity> getEventHandler() {
+		return null;
 	}
 	
 }

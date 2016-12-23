@@ -1,4 +1,4 @@
-package com.runesource.core.network.codec;
+package com.runesource.core.network.channel.handlers;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -11,11 +11,11 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-public final class LoginDecoder extends ByteToMessageDecoder {
+public final class LoginInboundHandler extends ByteToMessageDecoder {
 
 	private final Logger logger;
 	
-	public LoginDecoder() {
+	public LoginInboundHandler() {
 		this.logger = Logger.getLogger(getClass().getName());
 	}
 	
@@ -59,8 +59,8 @@ public final class LoginDecoder extends ByteToMessageDecoder {
 		final String username = buffer.readString();
 		final String password = buffer.readString();
 		out.add(new PlayerCredentials(ctx.channel(), username, password, secureRead, secureWrite));
-		ctx.pipeline().replace("decoder", "decoder", new PacketDecoder(secureRead));
-		ctx.pipeline().addAfter("decoder", "encoder", new PacketEncoder(secureWrite));
+		ctx.pipeline().replace("decoder", "decoder", new PacketInboundHandler(secureRead));
+		ctx.pipeline().addAfter("decoder", "encoder", new PacketOutboundHandler(secureWrite));
 		logger.info("Login - [username = " + username + " address = " + ctx.channel().remoteAddress() + "]");
 	}
 

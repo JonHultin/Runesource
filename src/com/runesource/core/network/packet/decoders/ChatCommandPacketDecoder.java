@@ -1,11 +1,11 @@
-package com.runesource.core.network.packet.in;
+package com.runesource.core.network.packet.decoders;
 
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.InboundPacket;
+import com.runesource.core.network.packet.PacketDecoder;
 import com.runesource.core.network.packet.Packet;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 
-public final class CommandPacket implements InboundPacket {
+public final class ChatCommandPacketDecoder implements PacketDecoder {
 
 	@Override
 	public void execute(Player player, Packet packet) {
@@ -26,7 +26,7 @@ public final class CommandPacket implements InboundPacket {
 			break;
 			
 		case "player.logout":
-			player.getEventHandler().unregister(player);
+			player.getEventHandler().unregister();
 			break;
 			
 		case "move":

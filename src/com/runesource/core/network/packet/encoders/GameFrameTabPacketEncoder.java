@@ -1,17 +1,17 @@
-package com.runesource.core.network.packet.out;
+package com.runesource.core.network.packet.encoders;
 
 import com.runesource.core.network.buffer.ByteModification;
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.OutboundPacket;
+import com.runesource.core.network.packet.PacketEncoder;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 
-public final class GameFrameElementPacket implements OutboundPacket {
+public final class GameFrameTabPacketEncoder implements PacketEncoder {
 
 	private int index;
 	
 	private int id;
 	
-	public GameFrameElementPacket(int index, int id) {
+	public GameFrameTabPacketEncoder(int index, int id) {
 		this.index = index;
 		this.id = id;
 	}

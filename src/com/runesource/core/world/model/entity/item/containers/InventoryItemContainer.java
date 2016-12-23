@@ -1,8 +1,8 @@
 package com.runesource.core.world.model.entity.item.containers;
 
-import com.runesource.core.network.packet.out.MessagePacket;
-import com.runesource.core.network.packet.out.UpdateItemContainerElementPacket;
-import com.runesource.core.network.packet.out.UpdateItemContainerPacket;
+import com.runesource.core.network.packet.encoders.ChatMessagePacketEncoder;
+import com.runesource.core.network.packet.encoders.ItemElementUpdatePacketEncoder;
+import com.runesource.core.network.packet.encoders.ItemElementsUpdatePacketEncoder;
 import com.runesource.core.world.model.entity.item.ItemContainer;
 import com.runesource.core.world.model.entity.item.ItemDefinition;
 import com.runesource.core.world.model.entity.mobile.player.Player;
@@ -18,7 +18,7 @@ public final class InventoryItemContainer extends ItemContainer {
 	@Override
 	public void add(int id, int amount) {
 		if (!available(id)) {
-			player.dispatch(new MessagePacket("You don't have enough inventory space to do that."));
+			player.dispatch(new ChatMessagePacketEncoder("You don't have enough inventory space to do that."));
 			return;
 		}
 		for (int index = 0; index < getCapacity(); index ++) {
@@ -82,12 +82,12 @@ public final class InventoryItemContainer extends ItemContainer {
 
 	@Override
 	public void update(int index) {
-		player.dispatch(new UpdateItemContainerElementPacket(elements[index], index, 3214));
+		player.dispatch(new ItemElementUpdatePacketEncoder(elements[index], index, 3214));
 	}
 
 	@Override
 	public void update() {
-		player.dispatch(new UpdateItemContainerPacket(elements, 3214));
+		player.dispatch(new ItemElementsUpdatePacketEncoder(elements, 3214));
 	}
 
 }

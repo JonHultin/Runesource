@@ -1,4 +1,4 @@
-package com.runesource.core.network.codec;
+package com.runesource.core.network.channel.handlers;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-public final class PacketDecoder extends ByteToMessageDecoder {
+public final class PacketInboundHandler extends ByteToMessageDecoder {
 
 	private final SecureCipher decipher;
 	
-	public PacketDecoder(SecureCipher decipher) {
+	public PacketInboundHandler(SecureCipher decipher) {
 		this.decipher = decipher;
 	}
 	

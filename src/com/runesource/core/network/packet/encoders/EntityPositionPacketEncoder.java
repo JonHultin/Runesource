@@ -1,16 +1,16 @@
-package com.runesource.core.network.packet.out;
+package com.runesource.core.network.packet.encoders;
 
 import com.runesource.core.network.buffer.ByteModification;
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.OutboundPacket;
+import com.runesource.core.network.packet.PacketEncoder;
 import com.runesource.core.world.Position;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 
-public final class EntityCoordinatePacket implements OutboundPacket {
+public final class EntityPositionPacketEncoder implements PacketEncoder {
 
 	private final Position position;
 		
-	public EntityCoordinatePacket(Position position) {
+	public EntityPositionPacketEncoder(Position position) {
 		this.position = position;
 	}
 

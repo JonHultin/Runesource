@@ -1,15 +1,15 @@
-package com.runesource.core.network.packet.out;
+package com.runesource.core.network.packet.encoders;
 
 import com.runesource.core.network.buffer.PacketHeader;
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.OutboundPacket;
+import com.runesource.core.network.packet.PacketEncoder;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 
-public final class MessagePacket implements OutboundPacket {
+public final class ChatMessagePacketEncoder implements PacketEncoder {
 
 	private final String message;
 	
-	public MessagePacket(String message) {
+	public ChatMessagePacketEncoder(String message) {
 		this.message = message;
 	}
 

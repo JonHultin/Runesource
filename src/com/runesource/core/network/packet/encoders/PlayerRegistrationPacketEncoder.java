@@ -1,12 +1,12 @@
-package com.runesource.core.network.packet.out;
+package com.runesource.core.network.packet.encoders;
 
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.OutboundPacket;
+import com.runesource.core.network.packet.PacketEncoder;
 import com.runesource.core.world.World;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 import com.runesource.core.world.model.entity.mobile.player.io.PlayerSerialization;
 
-public final class RegisterPlayerPacket implements OutboundPacket {
+public final class PlayerRegistrationPacketEncoder implements PacketEncoder {
 
 	@Override
 	public ProtocolBuffer dispatch(Player player) {

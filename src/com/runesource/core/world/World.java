@@ -8,7 +8,7 @@ import com.runesource.core.world.model.entity.mobile.npc.Npc;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 import com.runesource.util.IndexQueue;
 
-public final class World implements Runnable {
+public final class World {
 
 	private static final World singleton = new World();
 
@@ -64,27 +64,5 @@ public final class World implements Runnable {
 
 	public static World getSingleton() {
 		return singleton;
-	}
-
-	@Override
-	public void run() {
-		while (true) {
-			long start = System.currentTimeMillis();
-			try {
-				synchronized (this) {
-					playerRespitory.values().forEach($it -> $it.getEventHandler().updateMovement($it));
-					playerRespitory.values().forEach($it -> $it.getEventHandler().update($it));
-					playerRespitory.values().forEach($it -> $it.reset());
-					//System.out.println("Current Player Population: " + getPlayers().size());
-				}
-				long elapsed = System.currentTimeMillis() - start;
-				long sleepTime = 600 - elapsed;
-				if (sleepTime > 0) {
-					Thread.sleep(sleepTime);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
 }

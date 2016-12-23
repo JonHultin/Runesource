@@ -3,7 +3,7 @@ package com.runesource.core.world.model.entity.mobile;
 import com.runesource.core.world.Position;
 import com.runesource.core.world.model.entity.Entity;
 
-public abstract class MobileEntity extends Entity {
+public abstract class MobileEntity<T extends MobileEntityEventListener<?>> extends Entity<T> {
 
 	private boolean updateRequired;
 	

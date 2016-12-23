@@ -2,7 +2,7 @@ package com.runesource.core.world.model.entity;
 
 import com.runesource.core.world.Position;
 
-public abstract class Entity {
+public abstract class Entity<T extends EntityEventListener<?>> {
 
 	private final Position position;
 	
@@ -24,4 +24,5 @@ public abstract class Entity {
 		return position;
 	}
 
+	public abstract T getEventHandler();
 }

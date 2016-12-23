@@ -1,6 +1,20 @@
 package com.runesource.core.world.model.entity;
 
-public interface EntityEventListener<T extends Entity> {
+public abstract class EntityEventListener<T extends Entity<?>> {
 
-	public void update(T entity);
+	private final T entity;
+	
+	public EntityEventListener(T entity) {
+		this.entity = entity;
+	}
+	
+	public final T getEntity() {
+		return entity;
+	}
+
+	public abstract void update();
+	
+	public abstract void register();
+	
+	public abstract void unregister();
 }

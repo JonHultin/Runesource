@@ -1,7 +1,7 @@
 package com.runesource.core.world.model.entity.mobile.player;
 
-import com.runesource.core.network.packet.OutboundPacket;
-import com.runesource.core.network.packet.out.RegionalUpdatePacket;
+import com.runesource.core.network.packet.PacketEncoder;
+import com.runesource.core.network.packet.encoders.RegionUpdatePacketEncoder;
 import com.runesource.core.network.security.SecureCipher;
 import com.runesource.core.world.Position;
 import com.runesource.core.world.model.entity.item.containers.InventoryItemContainer;
@@ -10,15 +10,15 @@ import com.runesource.core.world.model.entity.mobile.MovementHandler;
 
 import io.netty.channel.Channel;
 
-public class Player extends MobileEntity {
+public class Player extends MobileEntity<PlayerEventHandler> {
 	
 	private final InventoryItemContainer inventoryContainer = new InventoryItemContainer(this);
 	
 	private final MovementHandler movementHandler = new MovementHandler(this);
 	
-	private final PlayerRegionManager regionManager = new PlayerRegionManager();
+	private final PlayerEventHandler eventHandler = new PlayerEventHandler(this);
 	
-	private final PlayerEventHandler eventHandler = new PlayerEventHandler();
+	private final PlayerRegionManager regionManager = new PlayerRegionManager();
 	
 	private final PlayerAppearance appearance = new PlayerAppearance();
 	
@@ -61,7 +61,7 @@ public class Player extends MobileEntity {
 		this.secureWrite = credentials.getEncipher();
 	}
 	
-	public void dispatch(OutboundPacket packet) {
+	public void dispatch(PacketEncoder packet) {
 		if (!channel.isActive()) {
 			return;
 		}
@@ -77,7 +77,7 @@ public class Player extends MobileEntity {
 		getPosition().setAs(position);
 		setResetMovementQueue(true);
 		setNeedsPlacement(true);
-		dispatch(new RegionalUpdatePacket());
+		dispatch(new RegionUpdatePacketEncoder());
 	}
 
 	public void reset() {
@@ -94,11 +94,7 @@ public class Player extends MobileEntity {
 	public InventoryItemContainer getInventoryContainer() {
 		return inventoryContainer;
 	}
-
-	public PlayerEventHandler getEventHandler() {
-		return eventHandler;
-	}
-
+	
 	public PlayerAppearance getAppearance() {
 		return appearance;
 	}
@@ -215,6 +211,10 @@ public class Player extends MobileEntity {
 
 	public PlayerSettings getSettings() {
 		return settings;
+	}
+
+	@Override public PlayerEventHandler getEventHandler() {
+		return eventHandler;
 	}
 
 }

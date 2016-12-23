@@ -1,12 +1,12 @@
-package com.runesource.core.network.packet.out;
+package com.runesource.core.network.packet.encoders;
 
 import com.runesource.core.network.buffer.PacketHeader;
 import com.runesource.core.network.buffer.ProtocolBuffer;
-import com.runesource.core.network.packet.OutboundPacket;
+import com.runesource.core.network.packet.PacketEncoder;
 import com.runesource.core.world.model.entity.item.Item;
 import com.runesource.core.world.model.entity.mobile.player.Player;
 
-public final class UpdateItemContainerElementPacket implements OutboundPacket {
+public final class ItemElementUpdatePacketEncoder implements PacketEncoder {
 
 	private final Item item;
 	
@@ -14,7 +14,7 @@ public final class UpdateItemContainerElementPacket implements OutboundPacket {
 	
 	private final int id;
 		
-	public UpdateItemContainerElementPacket(Item item, int index, int id) {
+	public ItemElementUpdatePacketEncoder(Item item, int index, int id) {
 		this.item = item;		
 		this.index = index;
 		this.id = id;
